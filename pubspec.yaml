@@ -4,7 +4,7 @@ description: The Dart interface to Flutter Sound.
 #author: canardoux<larpoux@gmail.com>
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
-homepage: https://flutter-sound.canardoux.xyz/
+homepage:  https://tau-ver.canardoux.xyz/fs-README.html
 repository: https://github.com/canardoux/flutter_sound_platform_interface/
 
 environment:
