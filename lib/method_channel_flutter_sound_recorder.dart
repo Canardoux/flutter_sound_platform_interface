@@ -76,12 +76,11 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
           {
             List<Object?> d = call.arguments['recordingData'];
             List<Float32List>? data = [];
-            for (Object? dd in d) {
-              var x = dd! as Float32List;
+            for (Object dd in d) {
+              var x = dd as Float32List;
               data.add(x);
             }
-          }
-          break;
+          } break;
 
         case "interleavedRecordingData16":
           {
@@ -105,7 +104,7 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
               if (x is Int16List) {
                 dd.add(x);
               } else if (x is Uint8List) // On iOS i am not able to handle that
-              {}
+                  {}
             }
             aRecorder!.recordingDataInt16(data: dd);
           }
