@@ -177,7 +177,7 @@ abstract class FlutterSoundPlayerPlatform extends PlatformInterface {
     //TWhenFinished? whenFinished,
   });
 
-  ///@deprecated
+  @deprecated
   Future<int> startPlayerFromMic(FlutterSoundPlayerCallback callback,
       {int? numChannels,
       int? sampleRate,

@@ -77,7 +77,7 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
         case "recordingDataFloat32":
           {
             List<Float32List> r = [];
-            var data = call.arguments['data'] as List<Object?>;
+            var data = call.arguments['recordingData'] as List<Object?>;
             for (var d in data) {
               r.add(d as Float32List);
             }
@@ -88,7 +88,7 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
         case "recordingDataInt16":
           {
             List<Int16List> r = [];
-            var data = call.arguments['data'] as List<Object?>;
+            var data = call.arguments['recordingData'] as List<Object?>;
             for (var d in data) {
               Uint8List xx = d as Uint8List;
       
@@ -109,20 +109,18 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
           } break;
         
 
-        case "recordingData":
+        case "interleavedRecordingData32":
           {
-            var data = call.arguments['data'] as Uint8List;
+            var data = call.arguments['recordingData'] as Uint8List;
             aRecorder!.interleavedRecording(data: data) ;
           } break;
 
-        /*
         case "interleavedRecordingData16": // Interleaved
           {
-            var data = call.arguments['data'] as Uint8List;
+            var data = call.arguments['recordingData'] as Uint8List;
             aRecorder!.interleavedRecording(data: data);
           }
           break;
-         */
 
         case "startRecorderCompleted":
           {

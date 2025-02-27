@@ -36,9 +36,9 @@ enum RecorderState {
 
 abstract class FlutterSoundRecorderCallback {
   void updateRecorderProgress({int? duration, double? dbPeakLevel});
-  void interleavedRecording({required Uint8List data});
-  void recordingDataFloat32({required List<Float32List> data});
-  void recordingDataInt16({required List<Int16List> data});
+  void recordingData({Uint8List? data});
+  void recordingDataFloat32({required List<Float32List>? data});
+  void recordingDataInt16({required List<Int16List>? data});
   void startRecorderCompleted(int? state, bool? success);
   void pauseRecorderCompleted(int? state, bool? success);
   void resumeRecorderCompleted(int? state, bool? success);
@@ -158,8 +158,9 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     Duration timeSlice = Duration.zero,
     bool enableVoiceProcessing = false,
     Codec? codec,
-    bool interleaved = true,
-    required bool toStream,
+    StreamSink<Uint8List>? toStream,
+    StreamSink<List<Float32List>>? toStreamFloat32,
+    StreamSink<List<Int16List>>? toStreamInt16,
     AudioSource? audioSource,
   }) {
     throw UnimplementedError('startRecorder() has not been implemented.');

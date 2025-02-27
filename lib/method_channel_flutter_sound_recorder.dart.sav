@@ -25,8 +25,6 @@ import 'package:flutter/services.dart';
 import 'flutter_sound_platform_interface.dart';
 import 'flutter_sound_recorder_platform_interface.dart';
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:io' show Platform;
 
 const MethodChannel _channel =
     MethodChannel('xyz.canardoux.flutter_sound_recorder');
@@ -76,53 +74,66 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
 
         case "recordingDataFloat32":
           {
-            List<Float32List> r = [];
-            var data = call.arguments['data'] as List<Object?>;
-            for (var d in data) {
-              r.add(d as Float32List);
+            List<Object?> d = call.arguments['data'];
+            List<Float32List>? data = [];
+            for (Object? dd in d) {
+              var x = dd! as Float32List;
+              data.add(x);
             }
-            aRecorder!.recordingDataFloat32(data: r) ;
-          } break;
-            
+            aRecorder!.recordingDataFloat32(data: data);
+          }
+          break;
+
 
         case "recordingDataInt16":
           {
-            List<Int16List> r = [];
-            var data = call.arguments['data'] as List<Object?>;
-            for (var d in data) {
-              Uint8List xx = d as Uint8List;
-      
-              // For an unknown reason, I had to clone xx to have a correct xx.buffer
-              if ( !kIsWeb && Platform.isIOS) {
-                int ln = xx.length;
-                Uint8List clone = Uint8List(ln);
-                for (int i = 0; i < ln; ++i) {
-                  clone[i] = xx[i];
-                }
-                xx = clone;
-              }
-              
-              var x = Int16List.view(xx.buffer, 0, 100);
-              r.add(x);
+            List<Object?> d = call.arguments['data'];
+            List<Int16List>? dd = [];
+            for (Object? x in d) {
+              if (x is Int16List) {
+                dd.add(x);
+              } else if (x is Uint8List) // On iOS i am not able to handle that
+                  {}
             }
-            aRecorder!.recordingDataInt16(data: r) ;
-          } break;
-        
-
-        case "recordingData":
-          {
-            var data = call.arguments['data'] as Uint8List;
-            aRecorder!.interleavedRecording(data: data) ;
-          } break;
-
-        /*
-        case "interleavedRecordingData16": // Interleaved
-          {
-            var data = call.arguments['data'] as Uint8List;
-            aRecorder!.interleavedRecording(data: data);
+            aRecorder!.recordingDataInt16(data: dd);
           }
           break;
-         */
+
+
+/*
+        case "interleavedRecordingData16":
+          {
+            List<Object?> d = call.arguments['data'];
+            List<Int16List>? dd = [];
+            for (Object? x in d) {
+              if (x is Int16List) {
+                dd.add(x);
+              } else if (x is Uint8List) // On iOS i am not able to handle that
+              {}
+            }
+            aRecorder!.recordingDataInt16(data: dd);
+          }
+          break;
+
+        case "interleavedRecordingData32":
+          {
+            List<Object?> d = call.arguments['data'];
+            List<Int16List>? dd = [];
+            for (Object? x in d) {
+              if (x is Int16List) {
+                dd.add(x);
+              } else if (x is Uint8List) // On iOS i am not able to handle that
+              {}
+            }
+            aRecorder!.recordingDataInt16(data: dd);
+          }
+          break;
+*/
+        case "recordingData":
+          {
+            aRecorder!.recordingData(data: call.arguments['data']);
+          }
+          break;
 
         case "startRecorderCompleted":
           {
@@ -277,9 +288,10 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
     int bufferSize = 8192,
     Duration timeSlice = Duration.zero,
     bool enableVoiceProcessing = false,
-    bool interleaved = true,
-    bool toStream = false,
+    StreamSink<List<Float32List>>? toStreamFloat32,
+    StreamSink<List<Int16List>>? toStreamInt16,
     Codec? codec,
+    StreamSink<Uint8List>? toStream,
     AudioSource? audioSource,
   }) {
     return invokeMethodVoid(
@@ -293,8 +305,11 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
         'bufferSize': bufferSize,
         'enableVoiceProcessing': enableVoiceProcessing, // ? 1 : 0,
         'codec': codec!.index,
-        'toStream': toStream,
-        'interleaved': interleaved,
+        'toStream': toStream != null ||
+            toStreamInt16 != null ||
+            toStreamFloat32 != null, // ? 1 : 0,
+        'interleaved':
+            toStreamFloat32 == null && toStreamInt16 == null, // ? 1 : 0,
         'audioSource': audioSource!.index,
       },
     );

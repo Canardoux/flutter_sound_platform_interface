@@ -289,7 +289,7 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
   }
 
   @override
-  ///@deprecated
+  @deprecated
   Future<int> startPlayerFromMic(FlutterSoundPlayerCallback callback,
       {int? numChannels,
       int? sampleRate,
@@ -338,17 +338,11 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
     FlutterSoundPlayerCallback callback, {
     required List<Int16List> data,
   }) {
-    List<Uint8List> r = [];
-    for (Int16List d in data) {
-      var dd = d.buffer;
-      var ddd = dd.asUint8List();
-      r.add(ddd);
-    }
     return invokeMethod(
       callback,
       'feedInt16',
       {
-        'data': r,
+        'data': data,
       },
     );
   }
