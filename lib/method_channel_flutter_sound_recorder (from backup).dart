@@ -81,9 +81,9 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
             for (var d in data) {
               r.add(d as Float32List);
             }
-            aRecorder!.recordingDataFloat32(data: r) ;
-          } break;
-            
+            aRecorder!.recordingDataFloat32(data: r);
+          }
+          break;
 
         case "recordingDataInt16":
           {
@@ -91,9 +91,9 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
             var data = call.arguments['recordingData'] as List<Object?>;
             for (var d in data) {
               Uint8List xx = d as Uint8List;
-      
+
               // For an unknown reason, I had to clone xx to have a correct xx.buffer
-              if ( !kIsWeb && Platform.isIOS) {
+              if (!kIsWeb && Platform.isIOS) {
                 int ln = xx.length;
                 Uint8List clone = Uint8List(ln);
                 for (int i = 0; i < ln; ++i) {
@@ -101,19 +101,20 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
                 }
                 xx = clone;
               }
-              
+
               var x = Int16List.view(xx.buffer, 0, 100);
               r.add(x);
             }
-            aRecorder!.recordingDataInt16(data: r) ;
-          } break;
-        
+            aRecorder!.recordingDataInt16(data: r);
+          }
+          break;
 
         case "interleavedRecordingData32":
           {
             var data = call.arguments['recordingData'] as Uint8List;
-            aRecorder!.interleavedRecording(data: data) ;
-          } break;
+            aRecorder!.interleavedRecording(data: data);
+          }
+          break;
 
         case "interleavedRecordingData16": // Interleaved
           {

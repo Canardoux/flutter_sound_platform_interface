@@ -289,6 +289,7 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
   }
 
   @override
+
   ///@deprecated
   Future<int> startPlayerFromMic(FlutterSoundPlayerCallback callback,
       {int? numChannels,

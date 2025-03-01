@@ -26,7 +26,6 @@ import 'method_channel_flutter_sound_recorder.dart';
 import 'flutter_sound_platform_interface.dart';
 import 'dart:core';
 import 'dart:typed_data';
-import 'dart:async';
 
 enum RecorderState {
   isStopped,
@@ -150,6 +149,7 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
 
   Future<void> startRecorder(
     FlutterSoundRecorderCallback callback, {
+    Codec? codec,
     String? path,
     int sampleRate = 44100,
     int numChannels = 1,
@@ -157,7 +157,6 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     int bufferSize = 8192,
     Duration timeSlice = Duration.zero,
     bool enableVoiceProcessing = false,
-    Codec? codec,
     bool interleaved = true,
     required bool toStream,
     AudioSource? audioSource,
