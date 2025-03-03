@@ -25,8 +25,6 @@ import 'package:flutter/services.dart';
 import 'flutter_sound_platform_interface.dart';
 import 'flutter_sound_recorder_platform_interface.dart';
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:io' show Platform;
 
 const MethodChannel _channel =
     MethodChannel('xyz.canardoux.flutter_sound_recorder');
@@ -90,19 +88,20 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
             List<Int16List> r = [];
             var data = call.arguments['data'] as List<Object?>;
             for (var d in data) {
+              // For each channel
               Uint8List xx = d as Uint8List;
 
               // For an unknown reason, I had to clone xx to have a correct xx.buffer
-              if (!kIsWeb && Platform.isIOS) {
-                int ln = xx.length;
-                Uint8List clone = Uint8List(ln);
-                for (int i = 0; i < ln; ++i) {
-                  clone[i] = xx[i];
-                }
-                xx = clone;
+              //if (!kIsWeb && Platform.isIOS) {
+              int ln = xx.length;
+              Uint8List clone = Uint8List(ln);
+              for (int i = 0; i < ln; ++i) {
+                clone[i] = xx[i];
               }
+              xx = clone;
+              //}
 
-              var x = Int16List.view(xx.buffer, 0, 100);
+              var x = Int16List.view(xx.buffer);
               r.add(x);
             }
             aRecorder!.recordingDataInt16(data: r);
