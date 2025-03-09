@@ -33,6 +33,7 @@ enum RecorderState {
   isRecording,
 }
 
+/// @nodoc
 abstract class FlutterSoundRecorderCallback {
   void updateRecorderProgress({int? duration, double? dbPeakLevel});
   void interleavedRecording({required Uint8List data});

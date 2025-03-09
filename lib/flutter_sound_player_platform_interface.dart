@@ -27,6 +27,7 @@ import 'method_channel_flutter_sound_player.dart';
 import 'flutter_sound_platform_interface.dart';
 import 'dart:typed_data' show Uint8List, Float32List, Int16List;
 
+/// @nodoc
 abstract class FlutterSoundPlayerCallback {
   void updateProgress({
     int duration,
