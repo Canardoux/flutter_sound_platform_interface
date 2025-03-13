@@ -45,6 +45,7 @@ abstract class FlutterSoundRecorderCallback {
   void stopRecorderCompleted(int? state, bool? success, String? url);
   void openRecorderCompleted(int? state, bool? success);
   void log(Level logLevel, String msg);
+  Duration getSubscriptionDuration();
 }
 
 /// The interface that implementations of url_launcher must implement.
