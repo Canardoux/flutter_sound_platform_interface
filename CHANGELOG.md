@@ -1,4 +1,4 @@
-## 9.25.6
+## 9.25.7
 
 - Please [look to this](https://flutter-sound.canardoux.xyz/changelog.html)
 
