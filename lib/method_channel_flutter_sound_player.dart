@@ -153,13 +153,11 @@ class MethodChannelFlutterSoundPlayer extends FlutterSoundPlayerPlatform {
     return r;
   }
 
-
   @override
   Future<bool> initPlugin() async {
     // Nothing special todo
     return true;
   }
-
 
   @override
   Future<void>? setLogLevel(
