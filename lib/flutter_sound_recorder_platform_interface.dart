@@ -110,6 +110,14 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     return _slots[slotno];
   }
 
+  // ------------------------------------------------------------------------------
+
+
+  Future<bool> initPlugin() {
+    throw UnimplementedError('initPlugin() has not been implemented.');
+  }
+
+
   Future<void>? setLogLevel(
       FlutterSoundRecorderCallback callback, Level loglevel) {
     throw UnimplementedError('setLogLeve() has not been implemented.');

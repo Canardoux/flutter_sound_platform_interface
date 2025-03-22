@@ -197,6 +197,13 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
     return _channel.invokeMethod(methodName, call);
   }
 
+
+  @override
+  Future<bool> initPlugin() async {
+    return true;
+  }
+
+
   @override
   Future<void>? setLogLevel(
       FlutterSoundRecorderCallback callback, Level logLevel) {

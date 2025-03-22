@@ -112,6 +112,10 @@ abstract class FlutterSoundPlayerPlatform extends PlatformInterface {
 
   //===================================================================================================================================================
 
+  Future<bool> initPlugin() {
+    throw UnimplementedError('initPlugin() has not been implemented.');
+  }
+
   Future<void>? setLogLevel(
       FlutterSoundPlayerCallback callback, Level loglevel) {
     throw UnimplementedError('setLogLeve() has not been implemented.');
