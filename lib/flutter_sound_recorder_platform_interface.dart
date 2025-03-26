@@ -170,8 +170,7 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     AudioSource? audioSource,
     bool enableNoiseSuppression = false,
     bool enableEchoCancellation = true,
-
-      }) {
+  }) {
     throw UnimplementedError('startRecorder() has not been implemented.');
   }
 

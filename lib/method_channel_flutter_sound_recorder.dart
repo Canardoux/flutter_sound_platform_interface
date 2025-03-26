@@ -288,8 +288,7 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
     AudioSource? audioSource,
     bool enableNoiseSuppression = false,
     bool enableEchoCancellation = true,
-
-      }) {
+  }) {
     return invokeMethodVoid(
       callback,
       'startRecorder',
