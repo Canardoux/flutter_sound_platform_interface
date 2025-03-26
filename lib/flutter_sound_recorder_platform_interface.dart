@@ -168,7 +168,10 @@ abstract class FlutterSoundRecorderPlatform extends PlatformInterface {
     bool interleaved = true,
     required bool toStream,
     AudioSource? audioSource,
-  }) {
+    bool enableNoiseSuppression = false,
+    bool enableEchoCancellation = true,
+
+      }) {
     throw UnimplementedError('startRecorder() has not been implemented.');
   }
 

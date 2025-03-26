@@ -286,7 +286,10 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
     bool toStream = false,
     Codec? codec,
     AudioSource? audioSource,
-  }) {
+    bool enableNoiseSuppression = false,
+    bool enableEchoCancellation = true,
+
+      }) {
     return invokeMethodVoid(
       callback,
       'startRecorder',
@@ -301,6 +304,8 @@ class MethodChannelFlutterSoundRecorder extends FlutterSoundRecorderPlatform {
         'toStream': toStream,
         'interleaved': interleaved,
         'audioSource': audioSource!.index,
+        'enableNoiseSuppression': enableNoiseSuppression,
+        'enableEchoCancellation': enableEchoCancellation,
       },
     );
   }
