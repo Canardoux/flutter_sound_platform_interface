@@ -1,4 +1,4 @@
-## 10.3.4
+## 10.3.5
 
 - Please [look to this](hhttps://taudio.canardoux.xyz/tau/changelog.html)
 
