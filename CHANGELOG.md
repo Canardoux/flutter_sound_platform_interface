@@ -1,4 +1,4 @@
-## 9.29.0
+## 9.29.1
 
 - Please [look to this](hhttps://taudio.canardoux.xyz/tau/changelog.html)
 
