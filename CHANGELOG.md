@@ -1,4 +1,4 @@
-## 9.29.4
+## 9.29.5
 
-- Please [look to this](hhttps://taudio.canardoux.xyz/tau/changelog.html)
+- Please [look to this](https://flutter-sound.canardoux.xyz/tau/CHANGELOG.html)
 
