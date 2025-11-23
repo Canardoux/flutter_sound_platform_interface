@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "flutter_sound_platform_interface",
-      "version": "9.29.7",
+      "version": "9.29.8",
       "dependencies": [
         "flutter",
         "logger",
